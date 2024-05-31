@@ -9,6 +9,7 @@ type PropsType = {
     id: string
     title: string
     desc?: string
+    background?: string
     js?: string
     css?: string
     isPublished: boolean
@@ -29,7 +30,7 @@ export default function Question(props: PropsType) {
     </PageWrapper>
   }
 
-  const { id, title = '', desc = '', isDeleted, isPublished, componentList = [] } = data || {}
+  const { id, title = '', desc = '', background = '', isDeleted, isPublished, componentList = [] } = data || {}
 
   // 已经被删除的，提示错误
   if (isDeleted) {
@@ -57,7 +58,7 @@ export default function Question(props: PropsType) {
     })}
   </>
 
-  return <PageWrapper title={title} desc={desc}>
+  return <PageWrapper title={title} desc={desc} background={background}>
     <form method='post' action="/api/answer">
       <input type="hidden" name="questionId" value={id}/>
       

@@ -6,13 +6,14 @@ import styles from '@/styles/Common.module.scss'
 type PropsType = {
   title: string
   desc?: string
+  background?: string,
   css?: string
   js?: string
   children: JSX.Element | JSX.Element[]
 }
 
 const PageWrapper: FC<PropsType> = (props: PropsType) => {
-  const { title, desc = '', css = '', js = '', children } = props
+  const { title, desc = '', background = '', css = '', js = '', children } = props
 
   return <>
       <Head>
@@ -22,8 +23,12 @@ const PageWrapper: FC<PropsType> = (props: PropsType) => {
         <link rel="icon" href="/favicon.ico" />
         <style>{css}</style>
       </Head>
-      <main className={styles.container}>
-        {children}
+      <main
+        className={styles.container}
+        style={{
+          backgroundImage: `url(${background})`
+        }}>
+          {children}
       </main>
       <Script id="page-js">{js}</Script>
   </>
